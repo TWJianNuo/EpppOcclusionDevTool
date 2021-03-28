@@ -47,6 +47,12 @@ def read_splits():
     return train_entries, evaluation_entries
 
 def vls_vrkitti2():
+    # Instance map index from 0 to a max instance number where 0 always indicates background. If number of
+    # instance is more than max instance number, it will be assigned to background
+
+    # Poses contain pose to project frame 1 3D points in Image Coordinate system to frame 2. In term of obj
+    # poses, it is a joint poses containing self movment as well.
+    
     train_entries, evaluation_entries = read_splits()
     train_dataset = VirtualKITTI2(args=args, root=args.dataset_root, entries=train_entries)
     train_loader = data.DataLoader(train_dataset, batch_size=1, pin_memory=False, drop_last=True)
@@ -56,6 +62,7 @@ def vls_vrkitti2():
         flowgt = data_blob['flowmap']
         depthgt = data_blob['depthmap']
         insmap = data_blob['insmap']
+
         intrinsic = data_blob['intrinsic']
         poses = data_blob['poses']
 
