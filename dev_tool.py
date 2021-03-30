@@ -115,24 +115,29 @@ def vls_vrkitti2():
         pts2d_x_epp = pts2d_epp[0, 0] / pts2d_d_epp
         pts2d_y_epp = pts2d_epp[1, 0] / pts2d_d_epp
 
+        marker_size = 50
         fig = plt.figure(figsize=(16, 9))
         fig.add_subplot(2, 2, 1)
-        plt.scatter(rndx, rndy, 10, 'r')
+        plt.scatter(rndx, rndy, marker_size, 'r')
         plt.imshow(img1)
         plt.legend(['Sampled pts'])
         plt.title("Image at Frame T")
 
         fig.add_subplot(2, 2, 2)
-        plt.scatter(pts_frm2_fflow_x, pts_frm2_fflow_y, 10, 'b')
-        plt.scatter(pts2d_x, pts2d_y, 10, 'g')
-        plt.scatter(pts2d_x_epp, pts2d_y_epp, 10, 'c')
         plt.imshow(img2)
+        # Plot the old point as well
+        plt.scatter(rndx, rndy, marker_size, 'r')
+        # Plot the point obtained from flow
+        plt.scatter(pts_frm2_fflow_x, pts_frm2_fflow_y, marker_size, 'b', alpha= 0.4)
+        plt.scatter(pts2d_x, pts2d_y, marker_size, 'g')
+        # Plot epipoles
+        plt.scatter(pts2d_x_epp, pts2d_y_epp, marker_size, 'c')
         plt.legend(['Cor pts from flowgt', 'Cor pts from depthgt and posegt', 'Epipole'])
         plt.title("Image at Frame T + 1")
 
         fig.add_subplot(2, 2, 3)
         plt.imshow(tensor2disp(1/depthgt, vmax=0.15, viewind=0))
-        plt.title("Depth Image at Frame T")
+        plt.title("Disparity Image at Frame T")
 
         fig.add_subplot(2, 2, 4)
         plt.imshow(vls_ins(img1, insnp))
@@ -145,8 +150,10 @@ def vls_vrkitti2():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset_root', type=str)
+    parser.add_argument('--dataset_root', type=str, default="data/virtual_kitti_organized")
     parser.add_argument('--maxinsnum', type=int, default=20)
 
     args = parser.parse_args()
+    torch.manual_seed(0)
+    np.random.seed(0)
     vls_vrkitti2()
