@@ -1,3 +1,11 @@
+"""
+    Sample Run:
+    python dev_tool.py
+
+    Calls the dataloader and plots the points obtained by flow and lidars.
+    TODO: Check for occlusions on static and moving objects
+"""
+
 from __future__ import print_function, division
 import os, inspect
 project_rootdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
