@@ -1,15 +1,6 @@
 # EppDevTool
 This repository contains train/eval/dev code for development of Eppipolar Occlusion Detection Algorithm
 
-## Dataset Address
-Please download an organized version of vrkitti2 from [google drive](https://drive.google.com/file/d/1sRUCkcKPXVhyBWHhe2qVCYBkVi8RsE6I/view?usp=sharing)
-
-## Demos
-You can run a demo frame via using command
-```Shell
-python dev_tool.py --dataset_root=your_vrkitti2root
-```
-
 ## KITTI training data
 
 You can download the entire [raw KITTI dataset](http://www.cvlibs.net/datasets/kitti/raw_data.php) by running:
@@ -33,4 +24,10 @@ For evaluation, you need to download an organized version of kitti stereo15 data
 You can train using command as follow:
 ```Shell
 python exp_kitti_sync/train_mDnet.py --model_name kittimD --split semidense_eigen_full --data_path [your_kitti_dataset] --gt_path [your_selected_gt] --batch_size 2 --num_epochs 20 --height 320 --width 1024 --val_gt_path [your_selected_gt] --num_layers 50
+```
+
+## Evaluation
+You can evaluate using command as follow:
+```Shell
+python exp_kitti_sync/eval_mDnet.py --data_path [your_kitti_dataset] --gt_path [your_kitti_stereo15_organized_path] --height 320 --width 1024 --num_layers 50 --load_weights_folder_depth [your_downloaded_pretrained_weights]
 ```

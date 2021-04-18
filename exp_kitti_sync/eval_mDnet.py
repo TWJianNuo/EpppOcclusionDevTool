@@ -4,14 +4,9 @@ import os, sys, inspect
 project_rootdir = os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))))
 sys.path.insert(0, project_rootdir)
 
-import torch.optim as optim
 from torch.utils.data import DataLoader
 
-# Resolve Tensorbard Confliction across pytorch version
-import torch
-import warnings
-
-from Exp_PreSIL.dataloader_kitti import KittiDataset
+from exp_kitti_sync.dataloader_kitti import KittiDataset
 
 import networks
 
