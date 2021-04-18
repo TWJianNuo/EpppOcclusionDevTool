@@ -17,8 +17,8 @@ cd ..
 
 ## Different Kitti gt depthmap
 We have four different groundtruth depthmaps, three for comparison and one for evaluation.
-For training, you need to donwload Kitti semidense gt [google drive](https://drive.google.com/file/d/1sRUCkcKPXVhyBWHhe2qVCYBkVi8RsE6I/view?usp=sharing), Kitti raw lidarscan mapped gt and kitti filtered gt.
-For evaluation, you need to download an organized version of kitti stereo15 dataset here.
+For training, you need to donwload [Kitti semidense gt](https://drive.google.com/file/d/1m0dVq5Y88tuRLqXCh3Vl3ED_9wvCfBpb/view?usp=sharing), [Kitti raw lidarscan mapped gt](https://drive.google.com/file/d/1McXOiD9XChVO1ezetv4koF30sWJ88uGd/view?usp=sharing) and [kitti filtered gt](https://drive.google.com/file/d/1w7y9kvGbKHxkWYPS9_e8W37oMCDtriL2/view?usp=sharing)
+For evaluation, you need to download an organized version of kitti stereo15 dataset [here](https://drive.google.com/file/d/12GBcFL7PUHijZUj7on4AWFclf6OCAySf/view?usp=sharing).
 
 ## Training
 You can train using command as follow:
@@ -31,3 +31,4 @@ You can evaluate using command as follow:
 ```Shell
 python exp_kitti_sync/eval_mDnet.py --data_path [your_kitti_dataset] --gt_path [your_kitti_stereo15_organized_path] --height 320 --width 1024 --num_layers 50 --load_weights_folder_depth [your_downloaded_pretrained_weights]
 ```
+The three pretrained models trained under different groundtruth depthmaps can be downloaded here:[Kitti semidense gt](https://drive.google.com/drive/folders/14DDmIoOUSxjQShOwM4whfU9-Xfquz4DR?usp=sharing), [Kitti raw lidarscan mapped gt](https://drive.google.com/drive/folders/1wpeM5kQmCbmNBp6CHkJAgmLhFDYl68cK?usp=sharing) and [kitti filtered gt](https://drive.google.com/drive/folders/1CtVpOE6V3LH4myLaUAJ9sQIrwD98K4Pg?usp=sharing)
